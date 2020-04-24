@@ -1,0 +1,45 @@
+.navbar{
+  background-color:#ffffff;
+}
+
+
+.no-padding {
+  margin:0;
+  padding:0;
+}
+ 
+.no-padding　> .col,
+.no-padding　> [class*="col-"] {
+  margin:0;
+  padding:0;
+}
+
+.btn-show{
+  border: #00f028 2px solid;
+}
+
+.footer{
+  font-size:12px;
+}
+
+.navbar-light .navbar-toggler {
+    border-color: rgba(0,0,0,0);
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(50,205,50)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+// 「ログインしました」などのフラッシュ用スタイル
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.badge_p{
+  padding: 0.7rem 0rem !important ;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>StartResearch</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body style="padding-top: 100px;">
+    
+    <% flash.each do |type,msg| %>
+      <% next if type == 'timedout' %>
+      <div class="alert alert-<%=type%> " role="alert"><%= msg %></div>
+    <% end %>
+
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top shadow">
+        <%= link_to root_path, class: "navbar-brand text-success" do %>
+            <%= image_tag 'logo.png' %>
+        <% end %>       
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNav">
+            <% if user_signed_in? %>
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <%= link_to '求人一覧', posts_index_path, class:"nav-link text-success" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to 'キープ一覧', keeps_index_path, class:"nav-link text-success" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to '申し込み一覧', applications_index_path, class:"nav-link text-success" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to '新規求人投稿', new_post_path, class:"nav-link text-success" %>
+                  </li>
+               </ul>
+               <ul class="navbar-nav">
+                 <li>
+                     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"nav-link text-success" %>  
+                 </li>    
+               </ul>
+            <% else %>
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <%= link_to '求人一覧', posts_index_path, class:"nav-link text-success" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to '新規求人投稿', new_post_path, class:"nav-link text-success" %>
+                  </li>
+               </ul>
+               <ul class="navbar-nav">
+                 <li>
+                    <%= link_to '会員登録', new_user_registration_path, class:"nav-link text-success" %>
+                 </li>  
+                 <li>
+                    <%= link_to 'ログイン', new_user_session_path, class:"nav-link text-success" %>
+                 </li>  
+               </ul>
+               
+            <% end %>
+         </div>
+    </nav>
+    
+    <%= yield %>
+    
+    <div class="container-fluid footer mt-5">
+      <div class="row bg-light py-4 mt-5">
+        <div class="col-md-12 text-center ">
+          © 2020 StartResearch
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      $(function(){
+        $(".alert").fadeOut(5000);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div class="row ">
+    <div class="col-md-6 offset-md-3 mb-5 pb-5  border border-success shadow">
+      <h1 class="text-center my-5 ">新規求人投稿</h1>
+      <%= form_for @post do |f| %>
+
+      <div class="form-group">
+        <%= f.label :title, "タイトル"%>
+        <%= f.text_field :title, placeholder: 'ex) 心理学実験' , class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :money, "時給" %>
+        <%= f.text_field :money, placeholder: 'ex) 1200' , class: 'form-control form-control-sm' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :hour, "勤務時間" %>
+        <%= f.text_field :hour, placeholder: 'ex) 12:00-17:00' , class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :station, "最寄駅" %>
+        <%= f.text_field :station, placeholder: 'ex) 新宿' , class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :location, "住所" %>
+        <%= f.text_field :location, placeholder: 'ex) xx県yy市zz町1-2-3' , class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description, "その他条件" %>
+        <%= f.text_area :description, placeholder: 'ex) 20才以上 女性' , class: 'form-control' %>
+        <small class='form-text'>＊特に無い場合は「特に無し」と書いてください</small>
+      </div>
+
+      <%= f.submit '投稿', class: 'btn btn-light btn-block mt-5' %>
+
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container ">
+  <div class="row border-bottom border-secondary my-5">
+    <div class="h1 col-md-7">申し込み一覧</div>
+    <div class="col-md-5"></div>
+  </div>
+  <div class="row">
+    <!ここからeach文---->
+      <% @application_posts.each do |post| %>
+      <div class="col-md-1"></div>
+      <div class="card col-md-5 mb-3 shadow">
+        <div class="card-body">
+          <h4 class="card-title">
+            <%= post.title %>
+          </h4>
+          <p class="card-text">
+            <%= "・最寄駅　　#{post.station}" %>
+          </p>
+          <p class="card-text">
+            <%= "・時給　　　#{post.money}円" %>
+          </p>
+          <p class="card-text">
+            <%= "・時間　　　#{post.hour}" %>
+          </p>
+          <%= link_to "詳細を見る", post_path(id: post.id), class:"card-link text-success"%>
+          <%= link_to "申し込みをキャンセル", applications_path(post_id: post.id), method: :delete, class:"card-link text-success"%>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12  text-center my-5">
+      <h1>エリア別検索</h1>
+    </div>
+
+  </div>
+  <%= form_with url: posts_index_path, method: :get, local: true do |f| %>
+　  <div class="row">
+      <div class="col-md-8 offset-md-1 ">
+        <%= f.text_field :location , placeholder: 'ex)  東京都  新宿区' ,class: 'form-control border-success' %>
+      </div>
+      <div class="col-md-2 no-padding">
+        <%= f.submit '検索', class: 'btn btn-block btn-success' %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
+
+
+
+<div class="container" id="test">
+  <div class="row  mt-5 mb-5">
+
+    <!ここからeach文---->
+      <% @posts&.each do |post| %>
+      <div class="card col-md-5 offset-md-1 mb-3 shadow">
+        <div class="card-body">
+          <h4 class="card-title">
+            <%= post.title %>
+          </h4>
+          <p class="card-text">
+            <%= "・最寄駅　　#{post.station}" %>
+          </p>
+          <p class="card-text">
+            <%= "・時給　　　#{post.money}円" %>
+          </p>
+          <p class="card-text">
+            <%= "・時間　　　#{post.hour}" %>
+          </p>
+          <%= link_to "詳細を見る", post_path(post.id), class:"card-link text-success"%>
+
+        </div>
+      </div>
+      <% end %>
+
+  </div>
+</div>
+
+
+
+
+<div class="container ">
+  <div class="row border-bottom border-secondary mb-5">
+    <div class="h1 col-md-7">求人一覧</div>
+    <div class="col-md-5"></div>
+  </div>
+  <div class="row">
+    <!ここからeach文---->
+      <% @indexes.each do |post| %>
+      <div class="card col-md-5 offset-md-1 mb-3 shadow">
+        <div class="card-body">
+          <h4 class="card-title">
+            <%= post.title %>
+          </h4>
+          <p class="card-text">
+            <%= "・最寄駅　　#{post.station}" %>
+          </p>
+          <p class="card-text">
+            <%= "・時給　　　#{post.money}円" %>
+          </p>
+          <p class="card-text">
+            <%= "・時間　　　#{post.hour}" %>
+          </p>
+          <%= link_to "詳細を見る", post_path(id: post.id), class:"card-link text-success"%>
+          
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>

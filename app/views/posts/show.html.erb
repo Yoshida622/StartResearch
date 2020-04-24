@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row ">
+      <div class="col-lg-4 h2 pb-2 mt-5 border-bottom border-secondary">
+         <%= @post.title%>
+      </div>
+      <div class="col-lg-3 mt-5"></div>
+      <% if user_signed_in? %>
+        <% if @post.keep_users.include?(current_user) && @post.application_users.include?(current_user) %>
+           <div class="col-lg-2 h4">
+             <span class="badge badge-success d-block mt-3 badge_p">キープ済み</span>
+           </div>
+           <div class="col-lg-3 h4">
+             <span class="badge badge-success d-block mt-3 badge_p">申し込み済み</span>
+           </div>
+        <% elsif !@post.keep_users.include?(current_user) && @post.application_users.include?(current_user) %>
+           <div class="col-lg-2 mt-3">
+              <%= link_to "キープする", keeps_path(post_id: @post.id), method: :post, class: 'btn btn-block btn-light btn-show' %>
+           </div>
+           <div class="col-lg-3 h4">
+             <span class="badge badge-success d-block mt-3 badge_p">申し込み済み</span>
+           </div>
+        <% elsif @post.keep_users.include?(current_user) && !@post.application_users.include?(current_user)%>
+           <div class="col-lg-2 h4">
+             <span class="badge badge-success d-block mt-3 badge_p">キープ済み</span>
+           </div>
+           <div class="col-lg-3 mt-3">
+              <%= link_to "申し込む", applications_path(post_id: @post.id), method: :post, class: 'btn btn-block btn-light btn-show' %>
+           </div>
+        <% else %>
+           <div class="col-lg-2 mt-3">
+              <%= link_to "キープする", keeps_path(post_id: @post.id), method: :post, class: 'btn btn-block btn-light btn-show' %>
+           </div>
+           <div class="col-lg-3 mt-3">
+              <%= link_to "申し込む", applications_path(post_id: @post.id), method: :post, class: 'btn btn-block btn-light btn-show' %>
+           </div>
+        <% end %>
+      <% else %>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-3"></div>
+      <% end %>
+  </div>
+  <div class="row mt-5 pt-5"> 
+      <div class="col-lg-2 h3 ">
+         <span class="badge badge-success">時給</span>
+      </div>   
+      <div class="col-lg-10 h3 ">
+         <%= "#{@post.money}円"%>
+      </div>
+  </div>
+  <div class="row mt-5 pt-5"> 
+      <div class="col-lg-2 h3">
+         <span class="badge badge-success">時間</span>
+      </div>
+      <div class="col-lg-10 h3 ">
+         <%= "#{@post.hour}"%>
+      </div>
+  </div>
+  <div class="row mt-5 pt-5"> 
+      <div class="col-lg-2 h3 ">
+         <span class="badge badge-success">最寄駅</span>
+      </div>
+      <div class="col-lg-10 h3 ">
+         <%= "#{@post.station}"%>
+      </div>
+  </div>
+  <div class="row mt-5 pt-5"> 
+      <div class="col-lg-2 h3">
+         <span class="badge badge-success">住所</span>
+      </div>
+      <div class="col-lg-10 h3 ">
+         <%= "#{@post.location}"%>
+      </div>
+  </div>
+  <div class="row my-5 pt-5"> 
+      <div class="col-lg-2 h3 ">
+         <span class="badge badge-success">その他条件</span>
+      </div>   
+      <div class="col-lg-10 h3 ">
+         <%= "#{@post.description}"%>
+      </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Applications', type: :feature do
   background do
-    @user = create(:user)
+    @user = create(:test)
     @post = create(:post)
   end 
   

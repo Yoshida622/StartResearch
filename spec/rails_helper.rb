@@ -10,7 +10,6 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require "devise"
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-require_relative "support/request_macros"
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -73,6 +72,6 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :poltergeist
   
   #devise
-  config.include Devise::Test::ControllerHelpers, type: :request
-  config.extend RequestrMacros, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.extend RequestrMacros
 end

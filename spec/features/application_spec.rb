@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Applications', type: :feature do
   background do
     @user = create(:user)
-    @post = create(:post_2)
+    @post = create(:post)
   end 
   
   scenario '申し込み' do

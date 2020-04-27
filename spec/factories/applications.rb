@@ -4,8 +4,13 @@ FactoryBot.define do
     password { 'test-test' }
 
     before(:create, &:skip_confirmation!)
+    trait :user_with_posts do
+      after(:create) do |test|
+        test.application_posts << create(:post_2)
+      end
+    end 
   end
-  
+
   factory :post_2,class: Post do
     money { '1200' }
     hour { '12:00-17:00' }

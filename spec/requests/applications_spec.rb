@@ -4,19 +4,20 @@ RSpec.describe 'Applications', type: :request do
   
   context 'ログインしている場合' do
       
-
-    # describe 'GET #index' do
-    #   it 'リクエストが成功すること' do
-    #     get applications_index_path
-    #     expect(response).to have_http_status(200)
-    #   end
+    describe 'GET #index' do
+      login
       
-    #   it '全てのPostを取得する' do
-    #     get applications_index_path
-    #     expect(response.body).to include ''
-    #     expect(response.body).to include ''
-    #   end
-    # end
+      it 'リクエストが成功すること' do
+        get applications_index_path
+        expect(response).to have_http_status(200)
+      end
+      
+      # it '全てのPostを取得する' do
+      #   get applications_index_path
+      #   expect(response.body).to include '新宿'
+      #   expect(response.body).to include '横浜'
+      # end
+    end
   
     describe 'GET #create' do
       login
@@ -29,15 +30,11 @@ RSpec.describe 'Applications', type: :request do
         expect(response).to have_http_status(302)
       end
       
-      login
-      
       it 'オブジェクトが増えること' do
         expect do
           post applications_path, params: { post_id: @post.id}
         end.to change(test.application_posts, :count).by(1)
       end
-      
-      login
       
       it 'リダイレクトするか' do
         post applications_path, params: { post_id: @post.id}
@@ -45,26 +42,28 @@ RSpec.describe 'Applications', type: :request do
       end
     end
     
-    # describe 'GET #destroy' do
-    #   before do
-    #   end
+    describe 'GET #destroy' do
+      let(:test) { create(:test,:user_with_posts) }
+      before do
+        sign_in test
+      end 
+    
+      it 'リクエストが成功するか' do
+        delete applications_path, params: { post_id: test.applications[0][:post_id]}
+        expect(response).to have_http_status(302)
+      end
       
-    #   it 'リクエストが成功するか' do
-    #     delete applications_path
-    #     expect(response).to have_http_status(302)
-    #   end
+      it 'オブジェクトが減ること' do
+        expect do
+          delete applications_path, params: { post_id: test.applications[0][:post_id]}
+        end.to change(test.application_posts, :count).by(-1)
+      end
       
-    #   it 'オブジェクトが減ること' do
-    #     expect do
-    #       delete applications_path, params: { post: FactoryBot.attributes_for(:post_2) }
-    #     end.to change(Post, :count).by(-1)
-    #   end
-      
-    #   it 'リダイレクトするか' do
-    #     delete applications_path
-    #     expect(response).to redirect_to post_path(id: post_id)
-    #   end
-    # end
+      it 'リダイレクトするか' do
+        delete applications_path, params: { post_id: test.applications[0][:post_id]}
+        expect(response).to redirect_to applications_index_path
+      end
+    end
   end
   
   context 'ログインしていない場合' do

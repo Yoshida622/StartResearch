@@ -19,28 +19,29 @@ RSpec.describe 'Applications', type: :request do
     # end
   
     describe 'GET #create' do
-      
+      login
       before do
-        @post_2 = create(:post_2)
+        @post = create(:post_2)
       end 
 
       it 'リクエストが成功するか' do
-        login
-        post applications_path
+        post applications_path, params: { post_id: @post.id}
         expect(response).to have_http_status(302)
       end
       
+      login
+      
       it 'オブジェクトが増えること' do
-        login
         expect do
-          post applications_path, params: { application: @post_2.id}
-        end.to change(Post, :count).by(1)
+          post applications_path, params: { post_id: @post.id}
+        end.to change(test.application_posts, :count).by(1)
       end
       
+      login
+      
       it 'リダイレクトするか' do
-        login
-        post applications_path
-        expect(response).to redirect_to post_path(id: post_id)
+        post applications_path, params: { post_id: @post.id}
+        expect(response).to redirect_to post_path(id: @post.id)
       end
     end
     

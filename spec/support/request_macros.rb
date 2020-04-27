@@ -1,6 +1,8 @@
 module RequestrMacros
   def login
     let(:test) { create(:test) }
-    sign_in test
+    before do
+      sign_in test
+    end 
   end
 end

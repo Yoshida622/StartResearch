@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.feature 'Applications', type: :feature do
   background do
-    @user = create(:user)
-    @post = create(:post_2)
-  end 
-  
+    @user = create(:test)
+    @post = create(:post)
+  end
+
   scenario '申し込み' do
     visit root_path
 

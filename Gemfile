@@ -74,9 +74,9 @@ group :test do
   # for save_and_open_page
   # gem 'launchy'
   # for using chorme
-  gem 'webdrivers'
   gem 'database_cleaner'
   gem 'poltergeist'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

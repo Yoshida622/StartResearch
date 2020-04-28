@@ -4,8 +4,8 @@ RSpec.feature 'Keeps', type: :feature do
   background do
     @user = create(:user)
     @post = create(:post_1)
-  end 
-  
+  end
+
   scenario 'キープできるか' do
     visit root_path
 

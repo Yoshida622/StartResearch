@@ -8,8 +8,8 @@ if Rails.env.production?
 end
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
-require "devise"
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+require 'devise'
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -70,8 +70,8 @@ RSpec.configure do |config|
   # FactoryBot
   config.include FactoryBot::Syntax::Methods
   Capybara.javascript_driver = :poltergeist
-  
-  #devise
+
+  # devise
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.extend RequestrMacros
 end

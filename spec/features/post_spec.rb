@@ -5,7 +5,7 @@ RSpec.feature 'Posts', type: :feature do
     @post = create(:post)
     @kanagawa = create(:kanagawa)
   end
-  
+
   scenario '新規求人投稿をする。' do
     visit root_path
 
@@ -18,16 +18,16 @@ RSpec.feature 'Posts', type: :feature do
     fill_in '住所', with: '心理学実験'
     fill_in 'その他条件', with: '20才以上 女性'
     click_button '投稿'
-    
+
     expect(page).to have_content '投稿に成功しました'
   end
 
   scenario 'エリア別検索できるか？' do
     visit posts_index_path
-    
+
     fill_in 'ex)  東京都  新宿区', with: '東京都yy市zz町1-2-3'
     click_button '検索'
-    
+
     expect(page).to have_content('心理学実験', count: 3)
   end
 end

@@ -4,8 +4,8 @@ RSpec.feature 'Applications', type: :feature do
   background do
     @user = create(:test)
     @post = create(:post)
-  end 
-  
+  end
+
   scenario '申し込み' do
     visit root_path
 

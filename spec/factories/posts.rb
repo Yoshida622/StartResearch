@@ -6,9 +6,9 @@ FactoryBot.define do
     location { '東京都yy市zz町1-2-3' }
     title { '心理学実験' }
     description { '20才以上 女性' }
-    
+
     trait :invalid do
-      money {''}
+      money { '' }
     end
   end
 

@@ -26,7 +26,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/credentials.yml.enc
-/config/environments/development.rb
-/config/environments/test.rb
-/config/environments/production.rb
+/config/environments
 /config/initializers/devise.rb
+/.env
+/.DS_Store
+/config/.DS_Store
+/.vscode
